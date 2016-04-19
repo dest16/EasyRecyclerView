@@ -22,8 +22,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
-import com.hippo.yorozuya.MathUtils;
-import com.hippo.yorozuya.SimpleHandler;
+import com.destin.sehaikun.MainHandler;
+import com.destin.sehaikun.MathUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -107,7 +107,7 @@ public final class LayoutManagerUtils {
 
     public static void scrollToPositionProperly(final RecyclerView.LayoutManager layoutManager,
             final Context context, final int position, final OnScrollToPositionListener listener) {
-        SimpleHandler.getInstance().postDelayed(new Runnable() {
+        MainHandler.getInstance().postDelayed(new Runnable() {
             @Override
             public void run() {
                 int first = getFirstVisibleItemPosition(layoutManager);
