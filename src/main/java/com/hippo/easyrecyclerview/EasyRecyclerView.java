@@ -41,10 +41,10 @@ import android.view.ViewConfiguration;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Checkable;
 
+import com.destin.sehaikun.MathUtils;
+import com.destin.sehaikun.NumberUtils;
+import com.destin.sehaikun.ViewUtils;
 import com.hippo.hotspot.Hotspot;
-import com.hippo.yorozuya.MathUtils;
-import com.hippo.yorozuya.NumberUtils;
-import com.hippo.yorozuya.ViewUtils;
 
 /**
  * Add setOnItemClickListener, setOnItemLongClickListener and setChoiceMode for
@@ -338,7 +338,7 @@ public class EasyRecyclerView extends RecyclerView {
      * behind it.
      *
      * @param onTop If true, the selector will be drawn on the item it is highlighting. The default
-     *        is false.
+     *              is false.
      */
     public void setDrawSelectorOnTop(boolean onTop) {
         mDrawSelectorOnTop = onTop;
@@ -434,12 +434,11 @@ public class EasyRecyclerView extends RecyclerView {
     /**
      * Returns the number of items currently selected. This will only be valid
      * if the choice mode is not {@link #CHOICE_MODE_NONE} (default).
-     *
+     * <p/>
      * <p>To determine the specific items that are currently selected, use one of
      * the <code>getChecked*</code> methods.
      *
      * @return The number of items currently selected
-     *
      * @see #getCheckedItemPosition()
      * @see #getCheckedItemPositions()
      * @see #getCheckedItemIds()
@@ -455,8 +454,7 @@ public class EasyRecyclerView extends RecyclerView {
      *
      * @param position The item whose checked state to return
      * @return The item's checked state or <code>false</code> if choice mode
-     *         is invalid
-     *
+     * is invalid
      * @see #setChoiceMode(int)
      */
     public boolean isItemChecked(int position) {
@@ -473,8 +471,7 @@ public class EasyRecyclerView extends RecyclerView {
      * mode has been set to {@link #CHOICE_MODE_SINGLE}.
      *
      * @return The position of the currently checked item or
-     *         {@link #INVALID_POSITION} if nothing is selected
-     *
+     * {@link #INVALID_POSITION} if nothing is selected
      * @see #setChoiceMode(int)
      */
     public int getCheckedItemPosition() {
@@ -489,10 +486,10 @@ public class EasyRecyclerView extends RecyclerView {
      * Returns the set of checked items in the list. The result is only valid if
      * the choice mode has not been set to {@link #CHOICE_MODE_NONE}.
      *
-     * @return  A SparseBooleanArray which will return true for each call to
-     *          get(int position) where position is a checked position in the
-     *          list and false otherwise, or <code>null</code> if the choice
-     *          mode is set to {@link #CHOICE_MODE_NONE}.
+     * @return A SparseBooleanArray which will return true for each call to
+     * get(int position) where position is a checked position in the
+     * list and false otherwise, or <code>null</code> if the choice
+     * mode is set to {@link #CHOICE_MODE_NONE}.
      */
     public SparseBooleanArray getCheckedItemPositions() {
         if (mChoiceMode != CHOICE_MODE_NONE) {
@@ -507,7 +504,7 @@ public class EasyRecyclerView extends RecyclerView {
      * has stable IDs. ({@link android.widget.ListAdapter#hasStableIds()} == {@code true})
      *
      * @return A new array which contains the id of each checked item in the
-     *         list.
+     * list.
      */
     public long[] getCheckedItemIds() {
         if (mChoiceMode == CHOICE_MODE_NONE || mCheckedIdStates == null || mAdapter == null) {
@@ -632,7 +629,7 @@ public class EasyRecyclerView extends RecyclerView {
      * {@link #CHOICE_MODE_MULTIPLE}.
      *
      * @param position The item whose checked state is to be checked
-     * @param value The new checked state for the item
+     * @param value    The new checked state for the item
      */
     public void setItemChecked(int position, boolean value) {
         if (mChoiceMode == CHOICE_MODE_NONE) {
@@ -708,9 +705,8 @@ public class EasyRecyclerView extends RecyclerView {
     }
 
     /**
-     * @see #setChoiceMode(int)
-     *
      * @return The current choice mode
+     * @see #setChoiceMode(int)
      */
     public int getChoiceMode() {
         return mChoiceMode;
@@ -723,7 +719,7 @@ public class EasyRecyclerView extends RecyclerView {
      * {@link #CHOICE_MODE_MULTIPLE}, the list allows any number of items to be chosen.
      *
      * @param choiceMode One of {@link #CHOICE_MODE_NONE}, {@link #CHOICE_MODE_SINGLE}, or
-     * {@link #CHOICE_MODE_MULTIPLE}
+     *                   {@link #CHOICE_MODE_MULTIPLE}
      */
     public void setChoiceMode(int choiceMode) {
         mChoiceMode = choiceMode;
@@ -757,7 +753,6 @@ public class EasyRecyclerView extends RecyclerView {
      * {@link #CHOICE_MODE_MULTIPLE_MODAL}.
      *
      * @param listener Listener that will manage the selection mode
-     *
      * @see #setChoiceMode(int)
      */
     public void setMultiChoiceModeListener(MultiChoiceModeListener listener) {
@@ -768,7 +763,6 @@ public class EasyRecyclerView extends RecyclerView {
     }
 
     /**
-     *
      * @param listener
      */
     public void setCustomCheckedListener(CustomChoiceListener listener) {
@@ -1007,7 +1001,7 @@ public class EasyRecyclerView extends RecyclerView {
         }
     }
 
-    private void setPressed(View v, boolean pressed, float x, float y){
+    private void setPressed(View v, boolean pressed, float x, float y) {
         v.setPressed(pressed);
         if (pressed && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             v.drawableHotspotChanged(x, y);
@@ -1080,7 +1074,7 @@ public class EasyRecyclerView extends RecyclerView {
     }
 
     private boolean performItemLongPress(final View child,
-            final int longPressPosition, final long longPressId) {
+                                         final int longPressPosition, final long longPressId) {
         // CHOICE_MODE_MULTIPLE_MODAL takes over long press.
         if (mChoiceMode == CHOICE_MODE_MULTIPLE_MODAL) {
             if (mChoiceActionMode == null &&
@@ -1174,7 +1168,7 @@ public class EasyRecyclerView extends RecyclerView {
             final int N = in.readInt();
             if (N > 0) {
                 checkIdState = new LongSparseArray<>();
-                for (int i=0; i<N; i++) {
+                for (int i = 0; i < N; i++) {
                     final long key = in.readLong();
                     final int value = in.readInt();
                     checkIdState.put(key, value);
@@ -1197,7 +1191,7 @@ public class EasyRecyclerView extends RecyclerView {
             out.writeSparseBooleanArray(checkState);
             final int N = checkIdState != null ? checkIdState.size() : 0;
             out.writeInt(N);
-            for (int i=0; i<N; i++) {
+            for (int i = 0; i < N; i++) {
                 out.writeLong(checkIdState.keyAt(i));
                 out.writeInt(checkIdState.valueAt(i));
             }
@@ -1321,7 +1315,6 @@ public class EasyRecyclerView extends RecyclerView {
     }
 
 
-
     private class CheckForLongPress extends WindowRunnnable implements Runnable {
         View v;
         int p;
@@ -1384,7 +1377,6 @@ public class EasyRecyclerView extends RecyclerView {
     /**
      * A base class for Runnables that will check that their view is still attached to
      * the original window as when the Runnable was created.
-     *
      */
     private class WindowRunnnable {
         private int mOriginalAttachCount;
@@ -1407,11 +1399,10 @@ public class EasyRecyclerView extends RecyclerView {
          * Callback method to be invoked when an item in the EasyRecyclerView
          * has been clicked.
          *
-         * @param parent The EasyRecyclerView where the click happened.
-         * @param view The view within the EasyRecyclerView that was clicked
+         * @param parent   The EasyRecyclerView where the click happened.
+         * @param view     The view within the EasyRecyclerView that was clicked
          * @param position The position of the view in the adapter.
-         * @param id The row id of the item that was clicked.
-         *
+         * @param id       The row id of the item that was clicked.
          * @return true if the callback consumed the click, false otherwise
          */
         boolean onItemClick(EasyRecyclerView parent, View view, int position, long id);
@@ -1426,11 +1417,10 @@ public class EasyRecyclerView extends RecyclerView {
          * Callback method to be invoked when an item in the EasyRecyclerView
          * has been clicked and held.
          *
-         * @param parent The EasyRecyclerView where the click happened
-         * @param view The view within the EasyRecyclerView that was clicked
+         * @param parent   The EasyRecyclerView where the click happened
+         * @param view     The view within the EasyRecyclerView that was clicked
          * @param position The position of the view in the list
-         * @param id The row id of the item that was clicked
-         *
+         * @param id       The row id of the item that was clicked
          * @return true if the callback consumed the long click, false otherwise
          */
         boolean onItemLongClick(EasyRecyclerView parent, View view, int position, long id);
@@ -1459,14 +1449,14 @@ public class EasyRecyclerView extends RecyclerView {
         /**
          * Called when an item is checked or unchecked during selection mode.
          *
-         * @param mode The {@link android.view.ActionMode} providing the selection mode
+         * @param mode     The {@link android.view.ActionMode} providing the selection mode
          * @param position Adapter position of the item that was checked or unchecked
-         * @param id Adapter ID of the item that was checked or unchecked
-         * @param checked <code>true</code> if the item is now checked, <code>false</code>
-         *                if the item is now unchecked.
+         * @param id       Adapter ID of the item that was checked or unchecked
+         * @param checked  <code>true</code> if the item is now checked, <code>false</code>
+         *                 if the item is now unchecked.
          */
         void onItemCheckedStateChanged(ActionMode mode,
-                int position, long id, boolean checked);
+                                       int position, long id, boolean checked);
     }
 
     class MultiChoiceModeWrapper implements MultiChoiceModeListener {
@@ -1515,7 +1505,7 @@ public class EasyRecyclerView extends RecyclerView {
 
         @Override
         public void onItemCheckedStateChanged(ActionMode mode,
-                int position, long id, boolean checked) {
+                                              int position, long id, boolean checked) {
             mWrapped.onItemCheckedStateChanged(mode, position, id, checked);
 
             // If there are no items selected we no longer need the selection mode.

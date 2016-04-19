@@ -17,6 +17,7 @@
 package com.hippo.easyrecyclerview;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -29,11 +30,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
-import com.hippo.yorozuya.AnimationUtils;
-import com.hippo.yorozuya.LayoutUtils;
-import com.hippo.yorozuya.MathUtils;
-import com.hippo.yorozuya.SimpleAnimatorListener;
-import com.hippo.yorozuya.SimpleHandler;
+import com.destin.sehaikun.AnimationUtils;
+import com.destin.sehaikun.LayoutUtils;
+import com.destin.sehaikun.MainHandler;
+import com.destin.sehaikun.MathUtils;
+
 
 public class FastScroller extends View {
 
@@ -98,7 +99,7 @@ public class FastScroller extends View {
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
-        mSimpleHandler = SimpleHandler.getInstance();
+        mSimpleHandler = MainHandler.getInstance();
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FastScroller, defStyleAttr, 0);
         mHandler = a.getDrawable(R.styleable.FastScroller_handler);
@@ -118,7 +119,7 @@ public class FastScroller extends View {
         mHideAnimator = ObjectAnimator.ofFloat(this, "alpha", 0.0f);
         mHideAnimator.setInterpolator(AnimationUtils.SLOW_FAST_INTERPOLATOR);
         mHideAnimator.setDuration(SCROLL_BAR_FADE_DURATION);
-        mHideAnimator.addListener(new SimpleAnimatorListener() {
+        mHideAnimator.addListener(new AnimatorListenerAdapter() {
 
             private boolean mCancel;
 

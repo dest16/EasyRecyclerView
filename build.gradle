@@ -35,9 +35,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':yorozuya')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:recyclerview-v7:23.3.0'
     compile 'com.github.seven332:hotspot:0.1.0'
     testCompile 'junit:junit:4.12'
+    compile project(':sehaikun')
 }
